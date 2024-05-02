@@ -8,4 +8,10 @@ Useful Composer + Laravel Commands ::
     Tells php to run the "artisan" CLI executable and if that runs inside a Laravel
     projects it spins up a Local Development server at "localhost:8000"
 
-3. 
+3. php artisan make:controller {controller_name}
+    Tells artisan to CREATE a new Controller at location "app/Http/{controller_name}
+
+4. php artisan view:clear
+    Clears the CACHED Views in Laravel (so any changes, change indeed imediatly)
+
+5. 
