@@ -16,6 +16,6 @@ class ExampleController extends Controller
     }
 
     public function aboutpage() {
-        return "<h1>About Page</h1><hr><a href='/'>Back to Home</a>";
+        return view("single-post");
     }
 }
