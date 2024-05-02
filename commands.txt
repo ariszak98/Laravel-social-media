@@ -16,3 +16,12 @@ Useful Composer + Laravel Commands ::
 
 5. sudo /usr/local/mysql/support-files/mysql.server [start/stop]
     Starts or Stops a MySQL Server
+
+6. php artisan migrate
+    Tells Artisan to migrate all database files inside of "database/migrations/" folder
+
+7. php artisan migrate:fresh
+    DROPs everything in the connected database and migrates again
+
+8. php artisan make:migration {migration_name}
+    Creates a new migration DB file inside of "database/migrations/" folder
