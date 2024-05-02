@@ -1,0 +1,11 @@
+Useful Composer + Laravel Commands ::
+
+1. composer create-project laravel/laravel {project_name}
+    Tells Composer to download the "laravel/laravel" library and CREATE a NEW Laravel
+    project inside the NEW folder named: "project_name"
+
+2. php artisan serve
+    Tells php to run the "artisan" CLI executable and if that runs inside a Laravel
+    projects it spins up a Local Development server at "localhost:8000"
+
+3. 
