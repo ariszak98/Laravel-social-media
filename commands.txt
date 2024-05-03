@@ -1,4 +1,4 @@
-Useful Composer + Laravel Commands ::
+Useful Composer + Laravel Commands + MySQL commands ::
 
 1. composer create-project laravel/laravel {project_name}
     Tells Composer to download the "laravel/laravel" library and CREATE a NEW Laravel
@@ -25,3 +25,6 @@ Useful Composer + Laravel Commands ::
 
 8. php artisan make:migration {migration_name}
     Creates a new migration DB file inside of "database/migrations/" folder
+
+9. php artisan make:model {model_name}
+    Creates a new Model at location "app/Models/{model_name}"
