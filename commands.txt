@@ -28,3 +28,8 @@ Useful Composer + Laravel Commands + MySQL commands ::
 
 9. php artisan make:model {model_name}
     Creates a new Model at location "app/Models/{model_name}"
+
+10. php artisan make:middleware {middleware_name}
+    Creates a new Middleware at location "app/Http/Middleware/{middleware_name}
+
+11. 

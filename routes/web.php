@@ -7,15 +7,16 @@ use App\Http\Controllers\UserController;
 /**
  *  WEB ROUTES
  */
-Route::get('/', [UserController::class, "showCorrectHomepage"]);
+Route::get('/', [UserController::class, "showCorrectHomepage"])->name('login');
 
 // Registration
-Route::post('register', [UserController::class, "register"]);
+Route::post('register', [UserController::class, "register"])->middleware('guest');
 
 // Login & Logout
-Route::post('/login', [UserController::class, 'login']);
-Route::post('/logout', [UserController::class, 'logout']);
+Route::post('/login', [UserController::class, 'login'])->middleware('guest');
+Route::post('/logout', [UserController::class, 'logout'])->middleware('guest');
 
 // Blog related
-Route::get('/create-post', [PostController::class, 'showCreateForm']);
-Route::post('/create-post', [PostController::class, 'storeNewPost']);
+Route::get('/create-post', [PostController::class, 'showCreateForm'])->middleware('auth');
+Route::post('/create-post', [PostController::class, 'storeNewPost'])->middleware('auth');
+Route::get('/post/{post}', [PostController::class, 'viewSinglePost']);
