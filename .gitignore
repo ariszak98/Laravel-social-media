@@ -1,4 +1,5 @@
-*.md
+.gitignore
+README.md
 .DS_Store
 /.phpunit.cache
 /node_modules
