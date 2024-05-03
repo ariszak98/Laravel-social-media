@@ -24,9 +24,11 @@ class UserController extends Controller
         $incoming['password'] = bcrypt($incoming['password']);
 
         // Store them in DB
-        User::create($incoming);
+        $user = User::create($incoming);
 
-        return "You just registered!!";
+        // Login & Redirect
+        auth()->login($user);
+        return redirect('/')->with('success', 'Thank you for creating an account.');
     }
 
     /**
@@ -40,15 +42,39 @@ class UserController extends Controller
         ]);
 
         if ( auth()->attempt(['username' => $incoming['loginusername'], 'password' => $incoming['loginpassword']]) ) {
-            
+
             // Regenerate Session
             $request->session()->regenerate();
 
-            return "Congratulations!!";
+            return redirect('/')->with('success', 'You have successfully logged in.');
         } else {
-            return "Wrong cridentials!";
+            // False Login
+            return redirect('/')->with('failed-login', 'Invalid login.');
         }
     }
+
+
+    /**
+     * Logout User
+     */
+    public function logout() {
+        auth()->logout();
+        return redirect('/')->with('success', 'You have successfully logged out.');
+    }
+
+
+    /**
+     * Show Correct Home Page
+     */
+    public function showCorrectHomepage(){
+
+        if (auth()->check()){
+            return view('homepage-feed');
+        } else {
+            return view('homepage');
+        }
+    }
+
 
 
 

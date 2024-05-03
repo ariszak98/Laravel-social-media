@@ -1,17 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\UserController;
 
 /**
  *  WEB ROUTES
  */
-Route::get('/', [ExampleController::class, "homepage"]);
-Route::get('/about', [ExampleController::class, "aboutpage"]);
+Route::get('/', [UserController::class, "showCorrectHomepage"]);
 
 // Registration
 Route::post('register', [UserController::class, "register"]);
 
-// Login
+// Login & Logout
 Route::post('/login', [UserController::class, 'login']);
+Route::post('/logout', [UserController::class, 'logout']);
