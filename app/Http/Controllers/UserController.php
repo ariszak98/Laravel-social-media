@@ -8,6 +8,8 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
+
+
     /**
      * Register User
      */
@@ -31,6 +33,7 @@ class UserController extends Controller
         return redirect('/')->with('success', 'Thank you for creating an account.');
     }
 
+
     /**
      * Login User
      */
@@ -49,7 +52,7 @@ class UserController extends Controller
             return redirect('/')->with('success', 'You have successfully logged in.');
         } else {
             // False Login
-            return redirect('/')->with('failed-login', 'Invalid login.');
+            return redirect('/')->with('failure', 'Invalid login.');
         }
     }
 
@@ -75,6 +78,16 @@ class UserController extends Controller
         }
     }
 
+
+    /**
+     * Show Profile Page
+     */
+    public function profile(User $user){
+
+        $posts = $user->posts()->latest()->get();
+        $count = $user->posts()->count();
+        return view('profile-posts', ['username' => $user->username, 'posts' => $posts, 'postsCount'=> $count]);
+    }
 
 
 

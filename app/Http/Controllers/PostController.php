@@ -8,10 +8,17 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+
     /**
      * Show Post Form
      */
     public function showCreateForm() {
+
+        // Authenticate
+        if (!auth()->check()){
+            return redirect('/');
+        }
+
         return view('create-post');
     }
 
@@ -48,6 +55,20 @@ class PostController extends Controller
         
         return view('single-post', ['post'=>$post]); 
     }
+
+    /**
+     * Delete Post
+     */
+    public function delete(Post $post) {
+
+         $post->delete();
+         return redirect('/profile/' . auth()->user()->username)->with('success', 'Post deleted.');
+
+
+    }
+
+
+
 
 // END
 }

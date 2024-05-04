@@ -32,4 +32,9 @@ Useful Composer + Laravel Commands + MySQL commands ::
 10. php artisan make:middleware {middleware_name}
     Creates a new Middleware at location "app/Http/Middleware/{middleware_name}
 
-11. 
+11. php artisan make:policy {policy_name} --model={model_name}
+    Creates a new Policy named {policy_name} which is tied to the Model {model_name}
+    at location "app/Policies/{policy_name}"
+    (When making a Policy like that Laravel automatically Registers it for us)
+
+12. 

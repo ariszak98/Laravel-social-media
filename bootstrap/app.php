@@ -10,8 +10,12 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     )
+
+    // Register the MustBeLoggedIn custom Middleware
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->alias([
+            'mustBeLoggedIn' => \App\Http\Middleware\MustBeLoggedIn::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
