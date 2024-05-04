@@ -37,4 +37,7 @@ Useful Composer + Laravel Commands + MySQL commands ::
     at location "app/Policies/{policy_name}"
     (When making a Policy like that Laravel automatically Registers it for us)
 
-12. 
+12. php artisan make:migration {migration_name} --table={table_name}
+    Creates a new Migration ON TOP of an existing table called {table_name}
+
+13. 

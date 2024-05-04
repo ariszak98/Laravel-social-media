@@ -27,3 +27,8 @@ Route::put('/post/{post}', [PostController::class, 'actuallyUpdatePost'])->middl
 
 // Profile related
 Route::get('/profile/{user:username}', [UserController::class, 'profile']);
+
+// Admin related
+Route::get('/admins-only', function() {
+    return "Only admin can see this page.";
+})->middleware('can:visitAdminPages');
