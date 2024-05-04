@@ -27,6 +27,8 @@ Route::put('/post/{post}', [PostController::class, 'actuallyUpdatePost'])->middl
 
 // Profile related
 Route::get('/profile/{user:username}', [UserController::class, 'profile']);
+Route::get('/manage-avatar', [UserController::class, 'showAvatarForm']);
+Route::post('/manage-avatar', [UserController::class, 'storeAvatar']);
 
 // Admin related
 Route::get('/admins-only', function() {

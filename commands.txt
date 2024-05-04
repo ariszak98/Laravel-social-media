@@ -40,4 +40,9 @@ Useful Composer + Laravel Commands + MySQL commands ::
 12. php artisan make:migration {migration_name} --table={table_name}
     Creates a new Migration ON TOP of an existing table called {table_name}
 
-13. 
+13. php artisan storage:link
+    Creates a shortcut of "storage" folder (where all uploaded stuff go - but is not publicly accessible)
+    under the "public" folder (which is publicly accessible) so that uploaded files can also exist inside
+    a public to the web folder for further use.
+
+14. 
