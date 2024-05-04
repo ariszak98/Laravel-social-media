@@ -10,6 +10,34 @@ class PostController extends Controller
 {
 
     /**
+     * Show Post EDIT Form
+     */
+    public function showEditForm(Post $post){
+
+        return view('edit-post', ['post' => $post]);
+    }
+
+    /**
+     * Update a Post
+     */
+    public function actuallyUpdatePost(Post $post, Request $request){
+
+        // Validate new Post data
+        $incoming = $request->validate([
+            'title' => 'required',
+            'body'  => 'required'
+        ]);
+
+        // Strip Tags
+        $incoming['title'] = strip_tags($incoming['title']);
+        $incoming['body'] = strip_tags($incoming['body']);
+
+        // Update + Redirect to same Post
+        $post->update($incoming);
+        return back()->with('success', "Post successfully updated.");
+    }
+
+    /**
      * Show Post Form
      */
     public function showCreateForm() {
