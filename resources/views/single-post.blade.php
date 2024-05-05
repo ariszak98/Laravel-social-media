@@ -20,7 +20,7 @@
       </div>
 
       <p class="text-muted small mb-4">
-        <a href="#"><img class="avatar-tiny" src="{{ $post->user->avatar }}" /></a>
+        <a href="/profile/{{ $post->user->username }}"><img class="avatar-tiny" src="{{ $post->user->avatar }}" /></a>
         Posted by <a href="/profile/{{ $post->user->username }}"><b>{{ $post->user->username }}</a></b> on {{ $post->created_at->format('n/j/Y') }}
       </p>
 
