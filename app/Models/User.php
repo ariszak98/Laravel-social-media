@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use App\Models\Follow;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -61,5 +62,11 @@ class User extends Authenticatable
         return $this->hasMany(Post::class, 'user_id');
     }
 
+    public function followers() {
+        return $this->hasMany(Follow::class, 'followeduser');
+    }
 
+    public function followingTheseUsers() {
+        return $this->hasMany(Follow::class, 'user_id');
+    }
 }

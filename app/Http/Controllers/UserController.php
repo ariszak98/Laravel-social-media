@@ -85,9 +85,6 @@ class UserController extends Controller
 
     /**
      * Get Shared Data for the (3) Profile pages :
-     * - profile    : posts
-     * - followers  : followers
-     * - following  : following
      */
     private function getSharedData($user){
 
@@ -99,7 +96,7 @@ class UserController extends Controller
         $count = $user->posts()->count();
 
         // Pass Shared Data as Global Blade variable
-        View::share('sharedData', ['currentlyFollowing' => $currentlyFollowing,'avatar'=> $user->avatar ,'username' => $user->username, 'postsCount'=> $count]);
+        View::share('sharedData', ['currentlyFollowing' => $currentlyFollowing,'avatar'=> $user->avatar ,'username' => $user->username, 'postsCount'=> $count, 'followersCount' => $user->followers()->count(), 'followingCount' => $user->followingTheseUsers()->count()]);
     }
 
     /**
@@ -110,13 +107,12 @@ class UserController extends Controller
         return view('profile-posts', ['posts' => $user->posts()->latest()->get()]);
     }
 
-
     /**
      * Show Profile Followers
      */
     public function profileFollowers(User $user){
         $this->getSharedData($user);
-        return view('profile-followers', ['posts' => $user->posts()->latest()->get()]);
+        return view('profile-followers', ['followers' => $user->followers()->latest()->get()]);
     }
 
     /**
@@ -124,9 +120,8 @@ class UserController extends Controller
      */
     public function profileFollowing(User $user){
         $this->getSharedData($user);
-        return view('profile-following', ['posts' => $user->posts()->latest()->get()]);
+        return view('profile-following', ['following' => $user->followingTheseUsers()->latest()->get()]);
     }
-
 
     /**
      * Show Manage Avatar Form
@@ -134,7 +129,6 @@ class UserController extends Controller
     public function showAvatarForm(){
         return view('avatar-form');
     }
-
 
     /**
      * Store Uploaded Avatar
