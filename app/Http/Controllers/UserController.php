@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Follow;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\View;
 use Intervention\Image\ImageManager;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Drivers\Gd\Driver;
@@ -82,23 +83,48 @@ class UserController extends Controller
         }
     }
 
-
     /**
-     * Show Profile Page
+     * Get Shared Data for the (3) Profile pages :
+     * - profile    : posts
+     * - followers  : followers
+     * - following  : following
      */
-    public function profile(User $user){
-
-        // Get User's Posts
-        $posts = $user->posts()->latest()->get();
-        $count = $user->posts()->count();
+    private function getSharedData($user){
 
         // Check if being followed Already
         $currentlyFollowing = 0;
         if(auth()->check()){
             $currentlyFollowing = Follow::where([['user_id', '=', auth()->user()->id], ['followeduser', '=', $user->id]])->count();
         }
+        $count = $user->posts()->count();
 
-        return view('profile-posts', ['currentlyFollowing'=> $currentlyFollowing,'avatar'=> $user->avatar ,'username' => $user->username, 'posts' => $posts, 'postsCount'=> $count]);
+        // Pass Shared Data as Global Blade variable
+        View::share('sharedData', ['currentlyFollowing' => $currentlyFollowing,'avatar'=> $user->avatar ,'username' => $user->username, 'postsCount'=> $count]);
+    }
+
+    /**
+     * Show Profile Page
+     */
+    public function profile(User $user){
+        $this->getSharedData($user);
+        return view('profile-posts', ['posts' => $user->posts()->latest()->get()]);
+    }
+
+
+    /**
+     * Show Profile Followers
+     */
+    public function profileFollowers(User $user){
+        $this->getSharedData($user);
+        return view('profile-followers', ['posts' => $user->posts()->latest()->get()]);
+    }
+
+    /**
+     * Show Profile Following
+     */
+    public function profileFollowing(User $user){
+        $this->getSharedData($user);
+        return view('profile-following', ['posts' => $user->posts()->latest()->get()]);
     }
 
 
