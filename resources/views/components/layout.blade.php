@@ -62,14 +62,14 @@
     @if (session()->has('success'))
         <div class="container container--narrow">
           <div class="alert alert-success text-center">
-            {{ session('success') }}
+            {!! session('success') !!}
           </div>
         </div>
     @endif
     @if (session()->has('failure'))
         <div class="container container--narrow">
           <div class="alert alert-danger text-center">
-            {{ session('failure') }}
+            {!! session('failure') !!}
           </div>
         </div>
     @endif
