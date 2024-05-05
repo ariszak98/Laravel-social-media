@@ -45,4 +45,12 @@ Useful Composer + Laravel Commands + MySQL commands ::
     under the "public" folder (which is publicly accessible) so that uploaded files can also exist inside
     a public to the web folder for further use.
 
-14. 
+14. php artisan db:seed
+    This db:seed command will simply add new items to your tables but will 
+    not edit or delete any of your existing data.
+
+15. php artisan migrate:fresh --seed
+    This command will completely erase all of your tables and data, then use your migration 
+    files to re-build all the tables, and finally use our seed data to populate the tables.
+
+16. 
