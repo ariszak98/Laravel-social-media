@@ -31,6 +31,13 @@ Route::put('/post/{post}', [PostController::class, 'actuallyUpdatePost'])->middl
 Route::get('/profile/{user:username}', [UserController::class, 'profile']);
 Route::get('/profile/{user:username}/followers', [UserController::class, 'profileFollowers']);
 Route::get('/profile/{user:username}/following', [UserController::class, 'profileFollowing']);
+    // Raw Profile
+Route::middleware('cache.headers:public;max_age=20;etag')->group(function(){
+    Route::get('/profile/{user:username}/raw', [UserController::class, 'profileRaw']);
+    Route::get('/profile/{user:username}/followers/raw', [UserController::class, 'profileFollowersRaw']);
+    Route::get('/profile/{user:username}/following/raw', [UserController::class, 'profileFollowingRaw']);
+});
+
     // Avatar
 Route::get('/manage-avatar', [UserController::class, 'showAvatarForm'])->middleware('mustBeLoggedIn');
 Route::post('/manage-avatar', [UserController::class, 'storeAvatar'])->middleware('mustBeLoggedIn');

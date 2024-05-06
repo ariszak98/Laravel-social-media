@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\OurExampleEvent;
 use App\Models\User;
 use App\Models\Follow;
 use Illuminate\Http\Request;
@@ -53,7 +54,6 @@ class UserController extends Controller
 
             // Regenerate Session
             $request->session()->regenerate();
-
             return redirect('/')->with('success', 'You have successfully logged in.');
         } else {
             // False Login
@@ -108,11 +108,25 @@ class UserController extends Controller
     }
 
     /**
+     * Show Profile Page :: RAW
+     */
+    public function profileRaw (User $user){
+        return response()->json(['theHTML'=> view('profile-posts-only', ['posts'=>$user->posts()->latest()->get()])->render(), 'dotTitle'=> $user->username . "'s Profile"]);
+    }
+
+    /**
      * Show Profile Followers
      */
     public function profileFollowers(User $user){
         $this->getSharedData($user);
         return view('profile-followers', ['followers' => $user->followers()->latest()->get()]);
+    }
+
+     /**
+     * Show Profile Followers :: RAW
+     */
+    public function profileFollowersRaw(User $user){
+        return response()->json(['theHTML'=> view('profile-followers-only', ['followers'=>$user->followers()->latest()->get()])->render(), 'dotTitle'=> $user->username . "'s Followers"]);
     }
 
     /**
@@ -121,6 +135,13 @@ class UserController extends Controller
     public function profileFollowing(User $user){
         $this->getSharedData($user);
         return view('profile-following', ['following' => $user->followingTheseUsers()->latest()->get()]);
+    }
+
+     /**
+     * Show Profile Following :: RAW
+     */
+    public function profileFollowingRaw(User $user){
+        return response()->json(['theHTML'=> view('profile-following-only', ['following'=>$user->followingTheseUsers()->latest()->get()])->render(), 'dotTitle'=>'Who ' . $user->username . " Follows"]);
     }
 
     /**

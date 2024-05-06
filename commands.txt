@@ -66,4 +66,8 @@ Useful Composer + Laravel Commands + MySQL commands ::
     It builds the up-to-here steps we made to the app (like a checkpoint) so that we dont needs
     "npm run dev" active to see changes up-to-here.
 
-20. 
+20. php artisan make:event {event_name}
+    Creates an Event at location "app/Events/{event_name}" named {event_name}
+
+21. php artisan make:listener {listener_name}
+    Creates a Listener at location "app/Listeners/{listener_name}" named {listener_name}
