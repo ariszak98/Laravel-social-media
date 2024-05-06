@@ -10,6 +10,15 @@ class PostController extends Controller
 {
 
     /**
+     * Search for a Post
+     */
+    public function search($term) {
+        $posts = Post::search($term)->get();
+        $posts->load('user:id,username,avatar');
+        return $posts;
+    }
+
+    /**
      * Show Post EDIT Form
      */
     public function showEditForm(Post $post){

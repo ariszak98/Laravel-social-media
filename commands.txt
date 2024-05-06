@@ -53,4 +53,17 @@ Useful Composer + Laravel Commands + MySQL commands ::
     This command will completely erase all of your tables and data, then use your migration 
     files to re-build all the tables, and finally use our seed data to populate the tables.
 
-16. 
+16. php artisan vendor:publish --provider="Laravel\Scout\ScoutServiceProvider" 
+    It defined as project's provider the Laravel's Scout (it needs to be downloaded with composer first)
+
+17. npm install
+    Uses NodeJS's npm to install all packages inside "package.json"
+
+18. npm run dev 
+    Starts a dev server that watches for any real-time changes and applies them to our app
+
+19. npm run build 
+    It builds the up-to-here steps we made to the app (like a checkpoint) so that we dont needs
+    "npm run dev" active to see changes up-to-here.
+
+20. 
