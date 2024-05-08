@@ -3,4 +3,4 @@
 
 ## About this project
 
-This is an introductionary project for Laravel. In here, a social media platform is made from scratch commit-by-commit using Laravel, Blade, Local MySQL and a custom bootstrap template.
+This is an introductionary project for Laravel. In here, a social media platform is made from scratch using Laravel, Blade, Local MySQL and a custom bootstrap template.
